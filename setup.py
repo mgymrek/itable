@@ -27,7 +27,7 @@ setup(name=NAME,
       package_dir={'itable': 'itable'},
       install_requires=['pandas','numpy'],
       classifiers=['Development Status :: 4 - Beta',\
-                       'Programming Language :: Python :: 2.4',\
+                       'Programming Language :: Python :: 2.6',\
                        'License :: OSI Approved :: MIT License',\
                        'Operating System :: OS Independent',\
                        'Topic :: Scientific/Engineering :: Visualization']
