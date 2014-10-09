@@ -109,6 +109,20 @@ class PrettyTable(object):
         for i in rows:
             for j in cols:
                 self.cell_styles[i][j] = style.copy()
+                
+    def set_cell_style(self, tuples, style=None, format_function=None, **kwargs):
+        """
+        Apply cell style to rows and columns specified
+        """
+        if style is None: style = CellStyle()
+        for key, value in kwargs.iteritems():
+            k = key.replace("_", "-")
+            style.set(k, value)
+        if format_function is not None: style.format_function = format_function
+        for tuple in tuples:
+			i = tuple[0]
+			j = tuple[1]
+			self.cell_styles[i][j] = style.copy()
 
     def set_row_header_style(self, style=None, indices=None, format_function=None, **kwargs):
         """
