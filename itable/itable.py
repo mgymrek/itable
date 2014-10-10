@@ -95,7 +95,7 @@ class PrettyTable(object):
                                     for j in range(self.num_rows)]
 
     # functions to set styles
-    def set_cell_style(self, style=None, rows=None, cols=None, format_function=None, **kwargs):
+    def set_cell_style(self, style=None, tuples=None, rows=None, cols=None, format_function=None, **kwargs):
         """
         Apply cell style to rows and columns specified
         """
@@ -104,6 +104,13 @@ class PrettyTable(object):
             k = key.replace("_", "-")
             style.set(k, value)
         if format_function is not None: style.format_function = format_function
+        if tuples:
+            for tup in tuples:
+		i = tup[0]
+		j = tup[1]
+		self.cell_styles[i][j] = style.copy()
+	if rows is None and cols is None:
+	    return
         if rows is None: rows = range(self.num_rows)
         if cols is None: cols = range(self.num_cols)
         for i in rows:
