@@ -105,10 +105,12 @@ class PrettyTable(object):
             style.set(k, value)
         if format_function is not None: style.format_function = format_function
         if tuples:
-            for tuple in tuples:
-		i = tuple[0]
-		j = tuple[1]
+            for tup in tuples:
+		i = tup[0]
+		j = tup[1]
 		self.cell_styles[i][j] = style.copy()
+	if rows is None and cols is None:
+	    return
         if rows is None: rows = range(self.num_rows)
         if cols is None: cols = range(self.num_cols)
         for i in rows:
