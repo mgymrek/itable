@@ -63,7 +63,7 @@ class PrettyTable(object):
     Formatted tables for display in IPython notebooks
     """
 
-    def __init__(self, df, tstyle=None, header_row=False, header_col=True, center=False):
+    def __init__(self, df, tstyle=None, header_row=False, header_col=True, center=False, rpt_header=False):
         """
         df: pandas.DataFrame
         style: TableStyle
@@ -77,6 +77,7 @@ class PrettyTable(object):
         self.header_col = header_col
         self.style = tstyle
         self.center = center
+        self.rpt_header = rpt_header
 
         # overall table style
         if tstyle is None:
@@ -106,11 +107,11 @@ class PrettyTable(object):
         if format_function is not None: style.format_function = format_function
         if tuples:
             for tup in tuples:
-		i = tup[0]
-		j = tup[1]
-		self.cell_styles[i][j] = style.copy()
-	if rows is None and cols is None:
-	    return
+				i = tup[0]
+				j = tup[1]
+				self.cell_styles[i][j] = style.copy()
+        if rows is None and cols is None:
+			return
         if rows is None: rows = range(self.num_rows)
         if cols is None: cols = range(self.num_cols)
         for i in rows:
@@ -266,6 +267,20 @@ class PrettyTable(object):
                 html += col_data
                 html += "</td>"
             html += "</tr>"
+            if self.rpt_header and (i + 1) % 10 == 0 and i < self.num_rows - 1:
+                if self.header_col:
+                    html += "<tr style=\"%s\">"%self.cell_style.css()
+                    if self.header_row:
+                        # need to add an extra empty cell
+                        html += "<td style=\"%s\"></td>"%self.corner_style.css()
+                    for j in range(self.num_cols):
+                        if self.header_col_styles is not None:
+                            header_style = self.header_col_styles[j].css()
+                        else: header_style = self.cell_style.css()
+                        html += "<td style=\"%s\">"%header_style
+                        html += self.df.columns[j]
+                        html += "</td>"
+                    html += "</tr>"
         html += "</table>"
         if self.center: return "<center>{0}</center>".format(html)
         else: return html
