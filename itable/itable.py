@@ -63,7 +63,7 @@ class PrettyTable(object):
     Formatted tables for display in IPython notebooks
     """
 
-    def __init__(self, df, tstyle=None, header_row=False, header_col=True, center=False, rpt_header=False):
+    def __init__(self, df, tstyle=None, header_row=False, header_col=True, center=False, rpt_header=0):
         """
         df: pandas.DataFrame
         style: TableStyle
@@ -267,7 +267,7 @@ class PrettyTable(object):
                 html += col_data
                 html += "</td>"
             html += "</tr>"
-            if self.rpt_header and (i + 1) % 10 == 0 and i < self.num_rows - 1:
+            if self.rpt_header > 0 and (i + 1) % rpt_header == 0 and i < self.num_rows - 1:
                 if self.header_col:
                     html += "<tr style=\"%s\">"%self.cell_style.css()
                     if self.header_row:
