@@ -267,7 +267,7 @@ class PrettyTable(object):
                 html += col_data
                 html += "</td>"
             html += "</tr>"
-            if self.rpt_header > 0 and (i + 1) % rpt_header == 0 and i < self.num_rows - 1:
+            if self.rpt_header > 0 and (i + 1) % self.rpt_header == 0 and i < self.num_rows - 1:
                 if self.header_col:
                     html += "<tr style=\"%s\">"%self.cell_style.css()
                     if self.header_row:
