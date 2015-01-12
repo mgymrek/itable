@@ -282,7 +282,7 @@ class PrettyTable(object):
                 else:
                     header_style = self.cell_style.css()
                 html += "<td style=\"%s\">" % header_style
-                html += self.df.columns[j]
+                html += str(self.df.columns[j])
                 html += "</td>"
             html += "</tr>"
         for i in range(self.num_rows):
@@ -321,7 +321,7 @@ class PrettyTable(object):
                         else:
                             header_style = self.cell_style.css()
                         html += "<td style=\"%s\">" % header_style
-                        html += self.df.columns[j]
+                        html += str(self.df.columns[j])
                         html += "</td>"
                     html += "</tr>"
         html += "</table>"
