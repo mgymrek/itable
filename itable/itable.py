@@ -279,10 +279,14 @@ class PrettyTable(object):
             for j in range(self.num_cols):
                 if self.header_col_styles is not None:
                     header_style = self.header_col_styles[j].css()
+                    header_data = self.header_col_styles[
+                        j].column_format(self.df.columns[j])
                 else:
                     header_style = self.cell_style.css()
+                    header_data = self.cell_style.column_format(
+                        self.df.columns[j])
                 html += "<td style=\"%s\">" % header_style
-                html += str(self.df.columns[j])
+                html += header_data
                 html += "</td>"
             html += "</tr>"
         for i in range(self.num_rows):
@@ -290,10 +294,14 @@ class PrettyTable(object):
             if self.header_row:
                 if self.header_row_styles is not None:
                     header_style = self.header_row_styles[i].css()
+                    header_data = self.header_row_styles[
+                        i].column_format(self.df.index.values[i])
                 else:
                     header_style = self.cell_style.css()
+                    header_data = self.cell_style.column_format(
+                        self.df.index.values[i])
                 html += "<td style=\"%s\">" % header_style
-                html += str(self.df.index.values[i])
+                html += header_data
                 html += "</td>"
             for j in range(self.num_cols):
                 if self.cell_styles[i][j] is not None:
@@ -318,10 +326,14 @@ class PrettyTable(object):
                     for j in range(self.num_cols):
                         if self.header_col_styles is not None:
                             header_style = self.header_col_styles[j].css()
+                            header_data = self.header_col_styles[
+                                j].column_format(self.df.columns[j])
                         else:
                             header_style = self.cell_style.css()
+                            header_data = self.cell_style.column_format(
+                                self.df.columns[j])
                         html += "<td style=\"%s\">" % header_style
-                        html += str(self.df.columns[j])
+                        html += header_data
                         html += "</td>"
                     html += "</tr>"
         html += "</table>"
