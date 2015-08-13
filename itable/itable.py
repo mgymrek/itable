@@ -115,7 +115,7 @@ class PrettyTable(object):
         """
         if style is None:
             style = CellStyle()
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             k = key.replace("_", "-")
             style.set(k, value)
         if format_function is not None:
@@ -142,7 +142,7 @@ class PrettyTable(object):
         """
         if style is None:
             style = CellStyle()
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             k = key.replace("_", "-")
             style.set(k, value)
         if format_function is not None:
@@ -163,7 +163,7 @@ class PrettyTable(object):
             style = CellStyle()
         if format_function is not None:
             style.format_function = format_function
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             k = key.replace("_", "-")
             style.set(k, value)
         for i in indices:
@@ -175,7 +175,7 @@ class PrettyTable(object):
         """
         if style is None:
             style = CellStyle()
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             k = key.replace("_", "-")
             style.set(k, value)
         if format_function is not None:
